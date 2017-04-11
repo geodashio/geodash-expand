@@ -15,8 +15,7 @@
  *
  */
 
-
-var expand = function(keyChain)
+module.exports = function(keyChain)
 {
   var newArray = [];
   if(Array.isArray(keyChain))
@@ -24,7 +23,7 @@ var expand = function(keyChain)
     for(var i = 0; i < keyChain.length; i++)
     {
       var value = keyChain[i];
-      if(angular.isString(value))
+      if(typeof value === 'string')
       {
         if(value.indexOf(".") != -1)
         {
@@ -41,11 +40,9 @@ var expand = function(keyChain)
       }
     }
   }
-  else if(angular.isString(keyChain))
+  else if(typeof keyChain === 'string')
   {
     newArray = keyChain.split(".");
   }
   return newArray;
 };
-
-module.exports = expand;
